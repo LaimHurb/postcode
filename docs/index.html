@@ -59,21 +59,20 @@
         if(fullRoadAddr !== ''){
           fullRoadAddr += extraRoadAddr;
         }
-        // var postData = {
-        //     postcode : data.postcode,
-        //     zonecode : data.zonecode,
-        //     addr : fullRoadAddr
-        // };
-        //window.postMessageToiOS(postData);
-        //console.log(fullRoadAddr);
+        var postData = {
+            postcode : data.postcode,
+            zonecode : data.zonecode,
+            addr : fullRoadAddr
+        };
+        window.postMessageToiOS(postData);
         
         zonecode = encodeURI(data.zonecode);
         jibunAddress = encodeURI(data.jibunAddress);
-        roadAddress = encodeURI(fullRoadAddr);
+        roadAddress = encodeURI(data.roadAddress);
         sido = encodeURI(data.sido);
         sigungu = encodeURI(data.sigungu);
 
-        url = "app://apps?control=member&action=addr&zonecode="+zonecode+"&roadAddress="+roadAddress;
+        url = "app://apps?control=member&action=addr&zonecode="+zonecode+"&jibunAddress="+jibunAddress+"&roadAddress="+roadAddress;
         location.href = url;
       },
       width : '100%',
