@@ -28,6 +28,7 @@
     console.log("onReceivedActivityMessageViaJavascriptInterface "+event);
   }
   function postMessageToiOS(postData) {
+    console.log("postMessageToiOS "+postData);
       window.webkit.messageHandlers.callBackHandler.postMessage(postData);
   }
   var element_layer = document.getElementById('layer');
