@@ -19,7 +19,9 @@
           //data는 사용자가 선택한 주소 정보를 담고 있는 객체이며, 상세 설명은 아래 목록에서 확인하실 수 있습니다.
         console.log('addressType == '+data.addressType);
       }
-    })
+    }).embed(element_layer);
+    element_layer.style.display = 'block';
+    initLayerPosition();
   };
   // window.addEventListener("message", onReceivedPostMessage, false);
   // function onReceivedPostMessage(event){
@@ -89,21 +91,21 @@
   //     },
   //     width : '100%',
   //     height : '100%'
-  //   }).embed(element_layer);
-  //   element_layer.style.display = 'block';
-  //   initLayerPosition();
+    // }).embed(element_layer);
+    // element_layer.style.display = 'block';
+    // initLayerPosition();
   // }
   
-  // function initLayerPosition(){
-  //   var width = (window.innerWidth || document.documentElement.clientWidth); //우편번호서비스가 들어갈 element의 width
-  //   var height = (window.innerHeight || document.documentElement.clientHeight); //우편번호서비스가 들어갈 element의 height
-  //   var borderWidth = 0; //샘플에서 사용하는 border의 두께
-  //   element_layer.style.width = width + 'px';
-  //   element_layer.style.height = height + 'px';
-  //   element_layer.style.border = borderWidth + 'px solid';
-  //   element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
-  //   element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
-  // }
+  function initLayerPosition(){
+    var width = (window.innerWidth || document.documentElement.clientWidth); //우편번호서비스가 들어갈 element의 width
+    var height = (window.innerHeight || document.documentElement.clientHeight); //우편번호서비스가 들어갈 element의 height
+    var borderWidth = 0; //샘플에서 사용하는 border의 두께
+    element_layer.style.width = width + 'px';
+    element_layer.style.height = height + 'px';
+    element_layer.style.border = borderWidth + 'px solid';
+    element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
+    element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
+  }
 </script>
 
 </body>
