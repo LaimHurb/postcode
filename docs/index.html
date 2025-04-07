@@ -37,7 +37,7 @@
       oncomplete: function(data) {
         var fullAddr = data.address; // 최종 주소 변수
         var extraAddr = ''; // 조합형 주소 변수
-        console.log("data.addressType "+data.addressType);
+        console.log("Postcode data "+data);
         if(data.addressType === 'R'){
           if(data.bname !== ''){
             extraAddr += data.bname;
