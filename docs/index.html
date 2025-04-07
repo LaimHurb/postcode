@@ -18,17 +18,17 @@
     //..ex deconstruct event into action & params
     var action = event.data.action;
     var params = event.data.params;
-    console.log("onReceivedPostMessage "+event);
+    //console.log("onReceivedPostMessage "+event);
   }
   function onReceivedActivityMessageViaJavascriptInterface(json){
     //..ex deconstruct data into action & params
     var data = JSON.parse(json);
     var action = data.action;
     var params = data.params;
-    console.log("onReceivedActivityMessageViaJavascriptInterface "+event);
+    //console.log("onReceivedActivityMessageViaJavascriptInterface "+event);
   }
   function postMessageToiOS(postData) {
-    console.log("postMessageToiOS "+postData);
+    //console.log("postMessageToiOS "+postData);
       window.webkit.messageHandlers.callBackHandler.postMessage(postData);
   }
   var element_layer = document.getElementById('layer');
@@ -38,10 +38,10 @@
         var fullAddr = data.address; // 최종 주소 변수
         var extraAddr = ''; // 조합형 주소 변수
         
-        console.log('addressType === '+data.addressType);
-        console.log('data.bname === '+data.bname);
-        console.log('data.buildingName === '+data.buildingName);
-        
+        //console.log('addressType === '+data.addressType);
+        //console.log('data.bname === '+data.bname);
+        //console.log('data.buildingName === '+data.buildingName);
+
         var fullNameAddr = ''; //data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress; // 도로명/지번 주소 변수
         if (data.userSelectedType === 'R') {
           fullNameAddr = data.roadAddress;
@@ -57,7 +57,7 @@
           if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
             extraRoadAddr += data.bname;
           }
-          if(data.buildingName !== '' && data.apartment === 'Y'){
+          if(data.buildingName !== ''){
             extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
           }
           if(extraRoadAddr !== ''){
@@ -69,39 +69,13 @@
         } else if (data.userSelectedType === 'J') {
           fullNameAddr = data.jibunAddress;
         }
-
-        // if(data.addressType === 'R'){
-        //   if(data.bname !== ''){
-        //     extraAddr += data.bname;
-        //   }
-        //   if(data.buildingName !== ''){
-        //     extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-        //   }
-        //   fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-        // }
-        // var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
-        // var extraRoadAddr = ''; // 도로명 조합형 주소 변수
-        // if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-        //   extraRoadAddr += data.bname;
-        // }
-        // if(data.buildingName !== '' && data.apartment === 'Y'){
-        //   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-        // }
-        // if(extraRoadAddr !== ''){
-        //   extraRoadAddr = ' (' + extraRoadAddr + ')';
-        // }
-        // if(fullRoadAddr !== ''){
-        //   fullRoadAddr += extraRoadAddr;
-        // }
-
-        //console.log('fullRoadAddr === '+fullRoadAddr);
-        console.log('fullNameAddr === '+fullNameAddr);
+        //console.log('fullNameAddr === '+fullNameAddr);
         var postData = {
             postcode : data.postcode,
             zonecode : data.zonecode,
             addr : fullNameAddr
         };
-        //window.postMessageToiOS(postData);
+        window.postMessageToiOS(postData);
         
         zonecode = encodeURI(data.zonecode);
         jibunAddress = encodeURI(data.jibunAddress);
