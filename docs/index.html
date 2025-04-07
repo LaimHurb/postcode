@@ -41,9 +41,9 @@
         console.log('addressType === '+data.addressType);
         console.log('userSelectedType === '+data.userSelectedType);
 
-        var fullNameAddr = data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress; // 도로명/지번 주소 변수
-        if (data.userSelectedType === 'R') 
-        if(data.addressType === 'R'){
+        var fullNameAddr = ''; //data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress; // 도로명/지번 주소 변수
+        if (data.userSelectedType === 'R') {
+          fullNameAddr = data.roadAdd;
           if(data.bname !== ''){
             extraAddr += data.bname;
           }
@@ -51,28 +51,54 @@
             extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
           }
           fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-        }
-        var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
-        var extraRoadAddr = ''; // 도로명 조합형 주소 변수
-        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-          extraRoadAddr += data.bname;
-        }
-        if(data.buildingName !== '' && data.apartment === 'Y'){
-          extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-        }
-        if(extraRoadAddr !== ''){
-          extraRoadAddr = ' (' + extraRoadAddr + ')';
-        }
-        if(fullRoadAddr !== ''){
-          fullRoadAddr += extraRoadAddr;
+
+          var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+          if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+            extraRoadAddr += data.bname;
+          }
+          if(data.buildingName !== '' && data.apartment === 'Y'){
+            extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+          }
+          if(extraRoadAddr !== ''){
+            extraRoadAddr = ' (' + extraRoadAddr + ')';
+          }
+          if(fullNameAddr !== ''){
+            fullNameAddr += extraRoadAddr;
+          }
+        } else if (data.userSelectedType === 'J') {
+          fullNameAddr = data.jibunAddress;
         }
 
-        console.log('fullRoadAddr === '+fullRoadAddr);
+        // if(data.addressType === 'R'){
+        //   if(data.bname !== ''){
+        //     extraAddr += data.bname;
+        //   }
+        //   if(data.buildingName !== ''){
+        //     extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+        //   }
+        //   fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+        // }
+        // var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+        // var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+        // if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+        //   extraRoadAddr += data.bname;
+        // }
+        // if(data.buildingName !== '' && data.apartment === 'Y'){
+        //   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+        // }
+        // if(extraRoadAddr !== ''){
+        //   extraRoadAddr = ' (' + extraRoadAddr + ')';
+        // }
+        // if(fullRoadAddr !== ''){
+        //   fullRoadAddr += extraRoadAddr;
+        // }
+
+        //console.log('fullRoadAddr === '+fullRoadAddr);
         console.log('fullNameAddr === '+fullNameAddr);
         var postData = {
             postcode : data.postcode,
             zonecode : data.zonecode,
-            addr : fullRoadAddr
+            addr : fullNameAddr
         };
         //window.postMessageToiOS(postData);
         
