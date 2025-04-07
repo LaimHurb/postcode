@@ -41,6 +41,8 @@
         console.log('addressType === '+data.addressType);
         console.log('userSelectedType === '+data.userSelectedType);
 
+        var fullNameAddr = data.userSelectedType === 'R' ? data.roadAddress : data.jibunAddress; // 도로명/지번 주소 변수
+        if (data.userSelectedType === 'R') 
         if(data.addressType === 'R'){
           if(data.bname !== ''){
             extraAddr += data.bname;
@@ -64,6 +66,9 @@
         if(fullRoadAddr !== ''){
           fullRoadAddr += extraRoadAddr;
         }
+
+        console.log('fullRoadAddr === '+fullRoadAddr);
+        console.log('fullNameAddr === '+fullNameAddr);
         var postData = {
             postcode : data.postcode,
             zonecode : data.zonecode,
